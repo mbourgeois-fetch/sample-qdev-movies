@@ -1,6 +1,6 @@
-# 🏴‍☠️ Pirate's Movie Treasure Chest - Spring Boot Demo Application
+# 🏴‍☠️ Pirate's Movie Treasure Chest - Go Web Application
 
-Ahoy matey! Welcome to the most swashbuckling movie catalog web application on the seven seas! Built with Spring Boot and infused with proper pirate spirit, this treasure chest demonstrates Java application development best practices while keeping things fun and engaging.
+Ahoy matey! Welcome to the most swashbuckling movie catalog web application on the seven seas! Built with Go and the Gin web framework, infused with proper pirate spirit, this treasure chest demonstrates Go web development best practices while keeping things fun and engaging.
 
 ## ⚓ Features
 
@@ -14,12 +14,12 @@ Ahoy matey! Welcome to the most swashbuckling movie catalog web application on t
 
 ## 🛠️ Technology Stack
 
-- **Java 8** - The foundation of our ship
-- **Spring Boot 2.0.5** - Our trusty sailing framework
-- **Maven** for dependency management - Keeping our cargo organized
-- **Log4j 2.20.0** - For tracking our adventures
-- **JUnit 5.8.2** - Testing our treasure maps
-- **Thymeleaf** - For crafting beautiful HTML templates
+- **Go 1.21** - The foundation of our ship
+- **Gin Web Framework** - Our trusty sailing framework
+- **Go Modules** for dependency management - Keeping our cargo organized
+- **Logrus** - For tracking our adventures
+- **Testify** - Testing our treasure maps
+- **HTML Templates** - For crafting beautiful HTML templates
 - **JavaScript** - For interactive search functionality
 
 ## 🚀 Quick Start
@@ -27,15 +27,16 @@ Ahoy matey! Welcome to the most swashbuckling movie catalog web application on t
 ### Prerequisites
 
 - Java 8 or higher - Ye need this to sail these waters
-- Maven 3.6+ - For managing our treasure
-
+- Go 1.21 or higher - Ye need this to sail these waters
+- Git - For managing our treasure
 ### Run the Application
 
 ```bash
 git clone https://github.com/<youruser>/sample-qdev-movies.git
-cd sample-qdev-movies
+git clone https://github.com/mbourgeois-fetch/sample-qdev-movies.git
 mvn spring-boot:run
-```
+go mod tidy
+go run main.go
 
 The application will start on `http://localhost:8080` - Chart your course there, matey!
 
@@ -49,44 +50,37 @@ The application will start on `http://localhost:8080` - Chart your course there,
 
 ```bash
 mvn clean package
-java -jar target/sample-qdev-movies-0.1.0.jar
-```
+go build -o movie-server main.go
+./movie-server
 
 ## 📁 Project Structure
 
 ```
 src/
-├── main/
-│   ├── java/
-│   │   └── com/amazonaws/samples/qdevmovies/
-│   │       ├── movies/
-│   │       │   ├── MoviesApplication.java    # Main Spring Boot application
-│   │       │   ├── MoviesController.java     # REST controller with search endpoints
-│   │       │   ├── MovieService.java         # Business logic with search functionality
-│   │       │   ├── Movie.java                # Movie data model
-│   │       │   ├── Review.java               # Review data model
-│   │       │   └── ReviewService.java        # Review business logic
-│   │       └── utils/
-│   │           ├── MovieIconUtils.java       # Movie icon utilities
-│   │           └── MovieUtils.java           # Movie validation utilities
-│   └── resources/
-│       ├── application.yml                   # Application configuration
-│       ├── movies.json                       # Movie treasure data
-│       ├── mock-reviews.json                 # Mock review data
-│       ├── log4j2.xml                        # Logging configuration
-│       ├── templates/
-│       │   ├── movies.html                   # Main movie list with search form
-│       │   └── movie-details.html            # Movie details page
-│       └── static/css/
-│           ├── movies.css                    # Styling with search form styles
-│           └── movie-details.css             # Movie details styling
-└── test/                                     # Comprehensive unit tests
-    └── java/
-        └── com/amazonaws/samples/qdevmovies/movies/
-            ├── MoviesControllerTest.java     # Controller tests with search functionality
-            ├── MovieServiceTest.java         # Service tests for search methods
-            └── MovieTest.java                # Basic movie model tests
-```
+├── main.go                                   # Main application entry point
+├── go.mod                                    # Go module dependencies
+├── internal/
+│   ├── handlers/
+│   │   ├── movie_handler.go                  # HTTP handlers with search endpoints
+│   │   └── movie_handler_test.go             # Handler tests
+│   ├── services/
+│   │   ├── movie_service.go                  # Business logic with search functionality
+│   │   ├── movie_service_test.go             # Service tests for search methods
+│   │   └── review_service.go                 # Review business logic
+│   ├── models/
+│   │   ├── movie.go                          # Movie data model
+│   │   └── review.go                         # Review data model
+│   └── utils/
+│       └── movie_icon_utils.go               # Movie icon utilities
+├── data/
+│   ├── movies.json                           # Movie treasure data
+│   └── mock-reviews.json                     # Mock review data
+├── templates/
+│   ├── movies.html                           # Main movie list with search form
+│   └── movie-details.html                    # Movie details page
+└── static/css/
+    ├── movies.css                            # Styling with search form styles
+    └── movie-details.css                     # Movie details styling
 
 ## 🗺️ API Endpoints
 
@@ -206,38 +200,57 @@ Run the comprehensive test suite:
 ```bash
 # Run all tests
 mvn test
-
+go test ./...
 # Run specific test class
-mvn test -Dtest=MovieServiceTest
-
+# Run specific test package
+go test ./internal/services
 # Run tests with coverage
 mvn test jacoco:report
-```
+go test -cover ./...
+
+# Run tests with verbose output
+go test -v ./...
 
 **Test Coverage:**
 - **MovieServiceTest**: Tests all search functionality, edge cases, and data validation
-- **MoviesControllerTest**: Tests REST endpoints, error handling, and response formats
-- **MovieTest**: Basic model validation tests
-
+- **movie_service_test.go**: Tests all search functionality, edge cases, and data validation
+- **movie_handler_test.go**: Tests HTTP handlers, error handling, and response formats
+- **Integration tests**: Complete request/response cycle testing
 ## 🐛 Troubleshooting
 
 ### Port 8080 already in use
 
-Run on a different port:
 ```bash
-mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8081
+# Find and kill process using port 8080 (macOS/Linux)
+lsof -ti:8080 | xargs kill
+
+# Or change the port in main.go
+log.Fatal(http.ListenAndServe(":8081", router))
 ```
 
-### Build failures
+### Build issues
 
-Clean and rebuild:
+Clean module cache and rebuild:
 ```bash
-mvn clean compile
+go clean -modcache
+go mod tidy
+go build
 ```
 
 ### Search not working
 
-Check the browser console for JavaScript errors and ensure the application is running on the correct port.
+Check the browser console for JavaScript errors and ensure:
+- The application is running on the correct port
+- JSON data files are in the `data/` directory
+- Templates are in the `templates/` directory
+- Static files are in the `static/` directory
+
+### Missing dependencies
+
+```bash
+go mod download
+go mod tidy
+```
 
 ## 🤝 Contributing
 
@@ -248,6 +261,10 @@ This project is designed as a demonstration application with pirate flair! Feel 
 - Add new features like movie ratings or favorites
 - Enhance the responsive design for better mobile experience
 - Add more comprehensive error handling
+- Implement database storage instead of JSON files
+- Add authentication and user management
+- Create a proper logging system
+- Add metrics and monitoring
 
 ## 📜 License
 
