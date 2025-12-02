@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Movies This Month - Pirate's Treasure Chest</title>
+    <link rel="stylesheet" href="/css/movies.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🏴‍☠️ Pirate's Movie Treasure Chest 🏴‍☠️</h1>
+        
+        <!-- Ahoy! Search form for finding movie treasures -->
+        <div class="search-container">
+            <h2>🔍 Search for Movie Treasure, Matey!</h2>
+            <form id="movieSearchForm" class="search-form">
+                <div class="search-inputs">
+                    <div class="input-group">
+                        <label for="movieName">Movie Name:</label>
+                        <input type="text" id="movieName" name="name" placeholder="Enter movie name, ye savvy pirate...">
+                    </div>
+                    <div class="input-group">
+                        <label for="movieId">Movie ID:</label>
+                        <input type="number" id="movieId" name="id" placeholder="Enter movie ID..." min="1">
+                    </div>
+                    <div class="input-group">
+                        <label for="movieGenre">Genre:</label>
+                        <select id="movieGenre" name="genre">
+                            <option value="">All Genres</option>
+                            {{range .genres}}
+                            <option value="{{.}}">{{.}}</option>
+                            {{end}}
+                        </select>
+                    </div>
+                </div>
+                <div class="search-buttons">
+                    <button type="submit" class="search-btn">🔍 Search for Treasure!</button>
+                    <button type="button" id="clearSearch" class="clear-btn">🧹 Clear Search</button>
+                    <button type="button" id="showAll" class="show-all-btn">🏴‍☠️ Show All Movies</button>
+                </div>
+            </form>
+            
+            <!-- Search results message area -->
+            <div id="searchMessage" class="search-message" style="display: none;"></div>
+        </div>
+
+        <div class="movies-grid" id="moviesGrid">
+            {{range .movies}}
+            <div class="movie-card">
+                <div class="movie-icon">{{.GetIcon}}</div>
+                <h3>{{.MovieName}}</h3>
+                <div class="movie-details">
+                    <p class="director">Director: <span>{{.Director}}</span></p>
+                    <p class="year">Year: <span>{{.Year}}</span></p>
+                    <p class="genre">Genre: <span>{{.Genre}}</span></p>
+                    <p class="duration">Duration: <span>{{.Duration}}</span> minutes</p>
+                </div>
+                <div class="rating">
+                    <span class="stars">{{call $.generateStars .IMDBRating}}</span>
+                    <span class="rating-score">{{printf "%.1f" .IMDBRating}}/5</span>
+                </div>
+                <a href="/movies/{{.ID}}/details" class="details-btn">View Details</a>
+            </div>
+            {{end}}
+        </div>
+        
+        <!-- Loading spinner for search -->
+        <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+            <div class="spinner"></div>
+            <p>Searching for treasure, matey...</p>
+        </div>
+    </div>
+
+    <script>
+        // Ahoy! JavaScript crew members for handling search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchForm = document.getElementById('movieSearchForm');
+            const moviesGrid = document.getElementById('moviesGrid');
+            const searchMessage = document.getElementById('searchMessage');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const clearButton = document.getElementById('clearSearch');
+            const showAllButton = document.getElementById('showAll');
+
+            // Handle search form submission
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                performSearch();
+            });
+
+            // Clear search functionality
+            clearButton.addEventListener('click', function() {
+                searchForm.reset();
+                hideSearchMessage();
+            });
+
+            // Show all movies functionality
+            showAllButton.addEventListener('click', function() {
+                searchForm.reset();
+                hideSearchMessage();
+                location.reload(); // Reload to show all movies
+            });
+
+            function performSearch() {
+                const formData = new FormData(searchForm);
+                const params = new URLSearchParams();
+                
+                // Build search parameters
+                for (let [key, value] of formData.entries()) {
+                    if (value.trim() !== '') {
+                        params.append(key, value.trim());
+                    }
+                }
+
+                // Check if any search criteria provided
+                if (params.toString() === '') {
+                    showSearchMessage('Arrr! Ye must provide at least one search parameter, matey!', 'error');
+                    return;
+                }
+
+                // Show loading spinner
+                showLoading(true);
+                hideSearchMessage();
+
+                // Perform the search
+                fetch(`/movies/search?${params.toString()}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        showLoading(false);
+                        if (data.error) {
+                            showSearchMessage(data.error, 'error');
+                            return;
+                        }
+                        
+                        displaySearchResults(data.movies);
+                        showSearchMessage(data.message, 'success');
+                    })
+                    .catch(error => {
+                        showLoading(false);
+                        console.error('Search error:', error);
+                        showSearchMessage('Batten down the hatches! Something went wrong during the search.', 'error');
+                    });
+            }
+
+            function displaySearchResults(movies) {
+                if (movies.length === 0) {
+                    moviesGrid.innerHTML = '<div class="no-results">No movie treasures found, matey! Try different search terms.</div>';
+                    return;
+                }
+
+                moviesGrid.innerHTML = movies.map(movie => `
+                    <div class="movie-card">
+                        <div class="movie-icon">${getMovieIcon(movie.movieName)}</div>
+                        <h3>${movie.movieName}</h3>
+                        <div class="movie-details">
+                            <p class="director">Director: <span>${movie.director}</span></p>
+                            <p class="year">Year: <span>${movie.year}</span></p>
+                            <p class="genre">Genre: <span>${movie.genre}</span></p>
+                            <p class="duration">Duration: <span>${movie.duration}</span> minutes</p>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">${generateStars(movie.imdbRating)}</span>
+                            <span class="rating-score">${movie.imdbRating.toFixed(1)}/5</span>
+                        </div>
+                        <a href="/movies/${movie.id}/details" class="details-btn">View Details</a>
+                    </div>
+                `).join('');
+            }
+
+            function generateStars(rating) {
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= rating) {
+                        stars += '★';
+                    } else if (i - 0.5 === rating) {
+                        stars += '⭐';
+                    } else {
+                        stars += '☆';
+                    }
+                }
+                return stars;
+            }
+
+            function getMovieIcon(movieName) {
+                // Simple icon mapping - in real app this would use the MovieIconUtils
+                const icons = ['🎬', '🎭', '🎪', '🎨', '🎯', '🎲', '🎸', '🎺', '🎻', '🎤'];
+                return icons[movieName.length % icons.length];
+            }
+
+            function showSearchMessage(message, type) {
+                searchMessage.textContent = message;
+                searchMessage.className = `search-message ${type}`;
+                searchMessage.style.display = 'block';
+            }
+
+            function hideSearchMessage() {
+                searchMessage.style.display = 'none';
+            }
+
+            function showLoading(show) {
+                loadingSpinner.style.display = show ? 'block' : 'none';
+                moviesGrid.style.display = show ? 'none' : 'grid';
+            }
+        });
+    </script>
+</body>
+</html>

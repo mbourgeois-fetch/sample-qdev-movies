@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "movieName": "The Prison Escape",
+    "director": "John Director",
+    "year": 1994,
+    "genre": "Drama",
+    "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+    "duration": 142,
+    "imdbRating": 5.0
+  },
+  {
+    "id": 2,
+    "movieName": "The Family Boss",
+    "director": "Michael Filmmaker",
+    "year": 1972,
+    "genre": "Crime/Drama",
+    "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+    "duration": 175,
+    "imdbRating": 5.0
+  },
+  {
+    "id": 3,
+    "movieName": "The Masked Hero",
+    "director": "Chris Moviemaker",
+    "year": 2008,
+    "genre": "Action/Crime",
+    "description": "When a menacing villain wreaks havoc and chaos on the people of the city, a masked hero must accept one of the greatest psychological and physical tests.",
+    "duration": 152,
+    "imdbRating": 5.0
+  },
+  {
+    "id": 4,
+    "movieName": "Urban Stories",
+    "director": "Quinn Director",
+    "year": 1994,
+    "genre": "Crime/Drama",
+    "description": "The lives of two mob hitmen, a boxer, a gangster and his wife intertwine in four tales of violence and redemption.",
+    "duration": 154,
+    "imdbRating": 4.5
+  },
+  {
+    "id": 5,
+    "movieName": "Life Journey",
+    "director": "Robert Filmmaker",
+    "year": 1994,
+    "genre": "Drama/Romance",
+    "description": "The presidencies of Kennedy and Johnson, the Vietnam War, and other historical events unfold from the perspective of an Alabama man with an IQ of 75.",
+    "duration": 142,
+    "imdbRating": 4.0
+  },
+  {
+    "id": 6,
+    "movieName": "Dream Heist",
+    "director": "Chris Moviemaker",
+    "year": 2010,
+    "genre": "Action/Sci-Fi",
+    "description": "A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+    "duration": 148,
+    "imdbRating": 4.5
+  },
+  {
+    "id": 7,
+    "movieName": "The Virtual World",
+    "director": "Alex Director",
+    "year": 1999,
+    "genre": "Action/Sci-Fi",
+    "description": "A computer programmer is led to fight an underground war against powerful computers who have constructed his entire reality with a system called the Matrix.",
+    "duration": 136,
+    "imdbRating": 4.5
+  },
+  {
+    "id": 8,
+    "movieName": "The Wise Guys",
+    "director": "Martin Filmmaker",
+    "year": 1990,
+    "genre": "Crime/Drama",
+    "description": "The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners Jimmy Conway and Tommy DeVito.",
+    "duration": 146,
+    "imdbRating": 4.5
+  },
+  {
+    "id": 9,
+    "movieName": "The Quest for the Ring",
+    "director": "Peter Moviemaker",
+    "year": 2001,
+    "genre": "Adventure/Fantasy",
+    "description": "A meek hobbit from the countryside and eight companions set out on a journey to destroy a powerful ring and save their world from a dark lord.",
+    "duration": 178,
+    "imdbRating": 4.5
+  },
+  {
+    "id": 10,
+    "movieName": "Space Wars: The Beginning",
+    "director": "George Director",
+    "year": 1977,
+    "genre": "Adventure/Sci-Fi",
+    "description": "A young hero joins forces with a wise mentor, a cocky pilot, and two droids to save the galaxy from an evil empire's world-destroying battle station.",
+    "duration": 121,
+    "imdbRating": 4.0
+  },
+  {
+    "id": 11,
+    "movieName": "The Factory Owner",
+    "director": "Steven Filmmaker",
+    "year": 1993,
+    "genre": "Drama/History",
+    "description": "In German-occupied Poland during World War II, an industrialist gradually becomes concerned for his Jewish workforce after witnessing their persecution.",
+    "duration": 195,
+    "imdbRating": 4.5
+  },
+  {
+    "id": 12,
+    "movieName": "Underground Club",
+    "director": "David Moviemaker",
+    "year": 1999,
+    "genre": "Drama/Thriller",
+    "description": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into an anarchist organization.",
+    "duration": 139,
+    "imdbRating": 4.5
+  }
+]
