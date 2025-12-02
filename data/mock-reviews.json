@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "movieId": 1,
+    "customerId": 1,
+    "rating": 5.0,
+    "comment": "Absolutely incredible storytelling. The friendship between Andy and Red is beautifully portrayed.",
+    "avatar": "👨",
+    "name": "MovieBuff87"
+  },
+  {
+    "id": 2,
+    "movieId": 1,
+    "customerId": 2,
+    "rating": 4.5,
+    "comment": "A masterpiece that gets better with every viewing. Tim Robbins and Morgan Freeman are phenomenal.",
+    "avatar": "👩",
+    "name": "CinemaLover"
+  },
+  {
+    "id": 3,
+    "movieId": 1,
+    "customerId": 3,
+    "rating": 5.0,
+    "comment": "Perfect blend of hope and despair. One of the greatest films ever made.",
+    "avatar": "🧔",
+    "name": "FilmCritic99"
+  },
+  {
+    "id": 4,
+    "movieId": 2,
+    "customerId": 4,
+    "rating": 5.0,
+    "comment": "Coppola's masterpiece. Brando's performance is legendary.",
+    "avatar": "👴",
+    "name": "ClassicFilmFan"
+  },
+  {
+    "id": 5,
+    "movieId": 2,
+    "customerId": 5,
+    "rating": 4.5,
+    "comment": "The family dynamics and power struggles are brilliantly crafted.",
+    "avatar": "👩‍🦳",
+    "name": "MovieMaven"
+  },
+  {
+    "id": 6,
+    "movieId": 2,
+    "customerId": 6,
+    "rating": 5.0,
+    "comment": "An offer you can't refuse. Timeless storytelling at its finest.",
+    "avatar": "👨‍🦲",
+    "name": "VintageViewer"
+  },
+  {
+    "id": 7,
+    "movieId": 3,
+    "customerId": 7,
+    "rating": 5.0,
+    "comment": "Heath Ledger's Joker is absolutely terrifying and brilliant.",
+    "avatar": "🦸",
+    "name": "SuperheroFan"
+  },
+  {
+    "id": 8,
+    "movieId": 3,
+    "customerId": 8,
+    "rating": 4.5,
+    "comment": "Nolan elevated the superhero genre to new heights. Dark and gripping.",
+    "avatar": "💪",
+    "name": "ActionJunkie"
+  },
+  {
+    "id": 9,
+    "movieId": 3,
+    "customerId": 9,
+    "rating": 5.0,
+    "comment": "The best Batman movie ever made. Perfect balance of action and psychology.",
+    "avatar": "🤓",
+    "name": "ComicBookGuy"
+  },
+  {
+    "id": 10,
+    "movieId": 4,
+    "customerId": 10,
+    "rating": 4.5,
+    "comment": "Brilliant non-linear storytelling. Every scene is quotable.",
+    "avatar": "🕴️",
+    "name": "TarantinoFan"
+  },
+  {
+    "id": 11,
+    "movieId": 4,
+    "customerId": 11,
+    "rating": 5.0,
+    "comment": "Tarantino's dialogue is pure poetry. Samuel L. Jackson is incredible.",
+    "avatar": "🎭",
+    "name": "IndieFilmLover"
+  },
+  {
+    "id": 12,
+    "movieId": 4,
+    "customerId": 12,
+    "rating": 4.5,
+    "comment": "Royale with cheese! This movie changed cinema forever.",
+    "avatar": "😎",
+    "name": "CultClassicFan"
+  },
+  {
+    "id": 13,
+    "movieId": 5,
+    "customerId": 13,
+    "rating": 4.0,
+    "comment": "Tom Hanks delivers an unforgettable performance. Life is like a box of chocolates indeed.",
+    "avatar": "❤️",
+    "name": "HeartWarming"
+  },
+  {
+    "id": 14,
+    "movieId": 5,
+    "customerId": 14,
+    "rating": 4.5,
+    "comment": "A beautiful journey through American history. Makes you laugh and cry.",
+    "avatar": "👨‍👩‍👧‍👦",
+    "name": "FamilyMovieFan"
+  },
+  {
+    "id": 15,
+    "movieId": 5,
+    "customerId": 15,
+    "rating": 4.0,
+    "comment": "Inspiring and touching. Forrest's innocence is both funny and profound.",
+    "avatar": "😊",
+    "name": "FeelGoodVibes"
+  },
+  {
+    "id": 16,
+    "movieId": 6,
+    "customerId": 16,
+    "rating": 4.5,
+    "comment": "Mind-bending masterpiece. The dream within a dream concept is brilliant.",
+    "avatar": "🚀",
+    "name": "SciFiGeek"
+  },
+  {
+    "id": 17,
+    "movieId": 6,
+    "customerId": 17,
+    "rating": 5.0,
+    "comment": "Inception redefined what cinema could achieve. Visually stunning and intellectually challenging.",
+    "avatar": "🧠",
+    "name": "NolanFanatic"
+  },
+  {
+    "id": 18,
+    "movieId": 6,
+    "customerId": 18,
+    "rating": 4.5,
+    "comment": "Had to watch it three times to fully understand. Absolutely worth it.",
+    "avatar": "🤔",
+    "name": "ThoughtProvoker"
+  }
+]

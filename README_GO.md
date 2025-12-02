@@ -26,17 +26,17 @@ Ahoy matey! Welcome to the most swashbuckling movie catalog web application on t
 
 ### Prerequisites
 
-- Java 8 or higher - Ye need this to sail these waters
 - Go 1.21 or higher - Ye need this to sail these waters
 - Git - For managing our treasure
+
 ### Run the Application
 
 ```bash
-git clone https://github.com/<youruser>/sample-qdev-movies.git
 git clone https://github.com/mbourgeois-fetch/sample-qdev-movies.git
-mvn spring-boot:run
+cd sample-qdev-movies
 go mod tidy
 go run main.go
+```
 
 The application will start on `http://localhost:8080` - Chart your course there, matey!
 
@@ -49,14 +49,13 @@ The application will start on `http://localhost:8080` - Chart your course there,
 ## 🏗️ Building for Production
 
 ```bash
-mvn clean package
 go build -o movie-server main.go
 ./movie-server
+```
 
 ## 📁 Project Structure
 
 ```
-src/
 ├── main.go                                   # Main application entry point
 ├── go.mod                                    # Go module dependencies
 ├── internal/
@@ -81,6 +80,7 @@ src/
 └── static/css/
     ├── movies.css                            # Styling with search form styles
     └── movie-details.css                     # Movie details styling
+```
 
 ## 🗺️ API Endpoints
 
@@ -152,8 +152,7 @@ GET /movies/search?name=PRISON&genre=DRAMA
       "genre": "Drama",
       "description": "Two imprisoned men bond over a number of years...",
       "duration": 142,
-      "imdbRating": 5.0,
-      "icon": "🎬"
+      "imdbRating": 5.0
     }
   ],
   "message": "Ahoy! Found 1 movie matching yer search, ye savvy pirate!",
@@ -199,23 +198,23 @@ Run the comprehensive test suite:
 
 ```bash
 # Run all tests
-mvn test
 go test ./...
-# Run specific test class
+
 # Run specific test package
 go test ./internal/services
+
 # Run tests with coverage
-mvn test jacoco:report
 go test -cover ./...
 
 # Run tests with verbose output
 go test -v ./...
+```
 
 **Test Coverage:**
-- **MovieServiceTest**: Tests all search functionality, edge cases, and data validation
 - **movie_service_test.go**: Tests all search functionality, edge cases, and data validation
 - **movie_handler_test.go**: Tests HTTP handlers, error handling, and response formats
 - **Integration tests**: Complete request/response cycle testing
+
 ## 🐛 Troubleshooting
 
 ### Port 8080 already in use
